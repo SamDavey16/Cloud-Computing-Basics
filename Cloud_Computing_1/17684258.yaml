@@ -1,0 +1,44 @@
+imports: #Calls all of the jinja files required
+- path: vm1.jinja
+- path: vm2.jinja
+- path: Network.jinja
+- path: subnet.jinja
+- path: firewall.jinja
+- path: bucket.jinja
+- path: Instance_manager.jinja
+#I based my jinja files on the google documentation snippets: https://github.com/GoogleCloudPlatform/deploymentmanager-samples/tree/master/google/resource-snippets
+resources:
+- name: instance-manager
+  type: Instance_manager.jinja
+  properties:
+    region: us-centrl1
+    
+- name: net
+  type: Network.jinja #Calls the corresponding jinja file
+   
+- name: subnet
+  type: subnet.jinja
+  properties:
+   ipCidrRange: 10.10.0.0/16 #defines the IP address range for the subnet
+   network: $(ref.net.selfLink) #Makes it a subnet of the network
+   region: us-central1 #Sets the region to central America
+    
+- name: firewall
+  type: firewall.jinja
+  properties:
+   network: $(ref.net.selfLink)
+   IPProtocol: TCP #Sets the IP protocol to TCP
+   
+- name: mobile-shop
+  type: vm1.jinja
+  properties:
+   diskSizeGb: "100" #Defines the amount of storage the virtual machine's disk can hold
+   subnet: $(ref.subnet.selfLink) #Puts the virtual machine on the subnet
+
+- name: vm-sql #The virtual machine that holds the SQL server
+  type: vm2.jinja
+  properties:
+   subnet: $(ref.subnet.selfLink)
+
+- name: bucket202012 #Unique name for the bucket
+  type: bucket.jinja

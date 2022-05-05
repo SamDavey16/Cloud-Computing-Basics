@@ -1,0 +1,15 @@
+resources:
+- name: vm-sql
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-a
+    machineType: zones/us-central1-a/machineTypes/n1-standard-1
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: projects/windows-sql-cloud/global/images/family/sql-web-2019-win-2019
+    networkInterfaces:
+    - subnetwork: {{ properties["subnet"] }}

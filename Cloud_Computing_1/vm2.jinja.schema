@@ -1,0 +1,16 @@
+info:
+  title: vm2 template schema
+  author: Sam
+  description: Specifies that the sql server needs to be assigned a subnet
+  version: 1.0
+
+imports:
+- path: vm2.jinja
+
+required:
+- subnet
+
+properties:
+  subnet:
+    type: string
+    description: Requires a string value for the subnet resource

@@ -1,0 +1,6 @@
+resources:
+- type: storage.v1.bucket #The bucket can be used as a general data store that is easily accesible remotely for the business
+  name: {{ env["name"] }}
+  properties:
+    location: EU #Different region from the virtual machines to allow for more robust storage in case certain regions experience downtime
+    storageClass: STANDARD

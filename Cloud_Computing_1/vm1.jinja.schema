@@ -1,0 +1,20 @@
+info:
+  title: vm1 template schema
+  author: Sam
+  description: Checks that the virtual machine has a specified disk size and is assigned to a subnet
+  version: 1.0
+
+imports:
+- path: vm1.jinja
+
+required:
+- diskSizeGb
+- subnet
+
+properties:
+  diskSizeGb:
+    type: string
+    description: Specifies the size in Gb for the operating system disk
+  subnet:
+    type: string
+    description: Requires a string value for the subnet resource

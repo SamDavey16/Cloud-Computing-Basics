@@ -1,0 +1,15 @@
+resources:
+- name: mobile-shop #This virtual machine holds the resources for the mobile shop
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-a
+    machineType: zones/us-central1-a/machineTypes/n1-standard-1
+    disks:
+    - deviceName: boot
+      type: PERSISTENT #Makes use of a persistent disk so that no data is lost when the machine isn't in use
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: projects/debian-cloud/global/images/family/debian-9
+    networkInterfaces:
+    - subnetwork: {{ properties["subnet"] }} #Places the virtual machine on the subnet

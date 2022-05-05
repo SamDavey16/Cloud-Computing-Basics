@@ -1,0 +1,16 @@
+info:
+  title: vm2 template schema
+  author: Sam
+  description: Specifies that the instance manager needs a region to operate in
+  version: 1.0
+
+imports:
+- path: Instance_manager.jinja
+
+required:
+- region
+
+properties:
+  subnet:
+    type: string
+    description: Requires a string value that defines the region

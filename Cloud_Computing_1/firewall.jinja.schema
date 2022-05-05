@@ -1,0 +1,20 @@
+info:
+  title: firewall template schema
+  author: Sam
+  description: Sets the requirements that the firewall needs to be assigned to a network and an IP protocol has to be chosen
+  version: 1.0
+
+imports:
+- path: firewall.jinja
+
+required:
+- network
+- IPProtocol
+
+properties:
+  network:
+    type: string
+    description: Requires a network for the subnet to be on
+  IPProtocol:
+    type: string
+    description: Sets the IP protocol

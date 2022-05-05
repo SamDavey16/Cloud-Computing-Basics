@@ -1,0 +1,24 @@
+info:
+  title: subnet template schema
+  author: Sam
+  description: Checks for requirements - Specifies an IP range for the subnet, Defines the network the subnet is on and specifies a region for the subnet
+  version: 1.0
+
+imports:
+- path: subnet.jinja
+
+required:
+- ipCidrRange
+- network
+- region
+
+properties:
+  ipCidrRange:
+    type: string
+    description: Specifies the IP range for the subnet
+  network:
+    type: string
+    description: Requires a network for the subnet to be on
+  region:
+    type: string
+    description: Requires a region for the subnet to operate in
